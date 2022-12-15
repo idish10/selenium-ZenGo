@@ -24,25 +24,19 @@ public class Selenium {
 		System.setProperty("webdriver.chrome.driver", "C:/Users/dnisnbaum/Desktop/chromedriver.exe");
 		driver= new ChromeDriver(options);
 		driver.get("https://zengo.com/");
-	if(!(driver.getTitle().equals("ZenGo - Simple & Secure Crypto Wallet App")))
+		if(!(driver.getTitle().equals("ZenGo - Simple & Secure Crypto Wallet App")))
 			 System.exit(0);
-        
-
-
 	}
 	
 	public void search() throws InterruptedException  {
 		/**
 		 * verify if the "Free Bitcoin" button launching  properly
 		 */
-		
-		
-		
 		Thread.sleep(2000);
 		driver.findElement(By.linkText("Free Bitcoin")).click();
 		Thread.sleep(2000);
-			if (!(driver.getCurrentUrl().equals("https://zengo.com/free-bitcoin/"))) 
-					System.exit(0);
+		if (!(driver.getCurrentUrl().equals("https://zengo.com/free-bitcoin/"))) 
+			System.exit(0);
 						
 	}
 	/**
@@ -51,30 +45,22 @@ public class Selenium {
 	 */
 	
 	public void download() throws InterruptedException  {
-
 		Thread.sleep(2000);
 		driver.findElement(By.linkText("Download ZenGo")).click();
 		Thread.sleep(2000);
-		
-				if(!(driver.findElement(By.id("popup-model")).isDisplayed()))
-						System.exit(0);
-				
+		if(!(driver.findElement(By.id("popup-model")).isDisplayed()))
+				System.exit(0);
 		List<WebElement> listimg= driver.findElements(By.tagName("img"));
 		
-		
 		/*Searching the QR Image */
-		
-				for(int i=0; i<listimg.size();i++) {
-						if(listimg.get(i).getAttribute("src").equals("https://zengo.com/wp-content/themes/zengo/images/ZenGo-QR-1.png"))
-							return;
-								}	
-				
+		for(int i=0; i<listimg.size();i++) {
+			if(listimg.get(i).getAttribute("src").equals("https://zengo.com/wp-content/themes/zengo/images/ZenGo-QR-1.png"))
+				return;			
 		/*Else the QR image is not displaying*/
-			System.exit(0);
+			
+		System.exit(0);
 
 	}
-	
-	
 	
 	/**
 	 * Navigate back to home page 
@@ -83,10 +69,7 @@ public class Selenium {
 	public void navigateBack() throws InterruptedException {
 		driver.navigate().back();
 		Thread.sleep(2000);
-
 	}
-	
-	
 	
 	
 	/**
@@ -97,19 +80,12 @@ public class Selenium {
 		driver.quit();
 	}
 	
-	
-	
-	
-	
-	
 	public static void main(String[] args) throws InterruptedException {
 		Selenium obj= new Selenium();
 		obj.launchBrowser();
 		obj.search();
 		obj.download();
 		obj.navigateBack();
-		obj.closeBrowser();
-	
-		
-			}
+		obj.closeBrowser();	
+	}
 }
